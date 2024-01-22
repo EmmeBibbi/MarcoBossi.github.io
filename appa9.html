@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Operazione binarie </title>
+
+<body>
+<h2><b>OPERAZIONI BINARIE</b></h2>
+
+<script >
+ 
+vetCodifica1 = new Array(8);     // dichiarazione un vettore di dimensione 8
+vetCodifica2 = new Array(8);     // dichiarazione un vettore di dimensione 8
+for(i = 0; i <8;i++)
+                     {
+                      vetCodifica1[i] = 0;         // inizializzazione con tutti 0 del primo vettore
+		      vetCodifica2[i] = 0;         // inizializzazione con tutti 0 del secondo vettore
+		     }
+	    
+function Converti_in_binario () {               // function per la conversione  da decimale a binario con rappresentazione ad 8 bit
+            
+	    var i;
+            i=0;
+            var resto;
+            var x = parseInt (document.getElementById("op1").value);  // lettura della prima casella di testo 
+
+                                          // algoritmo di conversione decimale binario
+             
+	    while(x>0)                     // il ciclo si ripete se il risultato della divisione è > 0
+		{
+		 resto = x % 2;            // calcolo del resto della divisione per 2
+		 vetCodifica1[i] = resto;
+            	 
+		 x = parseInt (x/2);      // divisione intera per due
+		 i++;
+		}
+             ris = "";
+
+	    for(i = 0; i <8;i++)
+                ris = vetCodifica1[i] + ris ;  // inserimento nella stringa ris dei valori del vettore facendo il reverse
+	    
+	    document.getElementById("ris1").innerHTML  =   ris;     // scrittura del risultato" presente nel td ris1
+           
+	   var y = parseInt (document.getElementById("op2").value);  // lettura della seconda casella di testo 
+
+               i = 0;
+               ris = "";
+	    while(y>0)                     // il ciclo si ripete se il risultato della divisione è > 0
+		{
+		 resto = y % 2;            // calcolo del resto della divisione per 2
+		 vetCodifica2[i] = resto;
+            	 
+		 y = parseInt (y/2);      // divisione intera per due
+		 i++;
+		}
+             ris = "";
+	    for(i = 0; i <8;i++)
+                ris = vetCodifica2[i] + ris ;  // inserimento nella stringa ris dei valori del vettore facendo il reverse
+	    
+	    document.getElementById("ris2").innerHTML  =   ris;     // scrittura del risultato" presente nel td ris2
+        }
+
+function AND() {
+ris="";
+for(i = 0; i <8;i++)
+                ris =  parseInt(vetCodifica1[i] & vetCodifica2[i]) + ris; 
+document.getElementById("ris3").innerHTML=ris;  //scrittura del risultato nella cella con id = ris3 dell'operazione AND bit a bit
+ }
+
+function OR() {
+ris="";
+for(i = 0; i <8;i++)
+                ris =  parseInt(vetCodifica1[i] | vetCodifica2[i]) + ris; 
+document.getElementById("ris4").innerHTML=ris; //scrittura del risultato nella cella con id = ris4 dell'operazione AND bit a bit
+}
+
+function XOR() {
+ris="";
+for(i = 0; i <8;i++)
+                ris =  parseInt(vetCodifica1[i] ^ vetCodifica2[i]) + ris; 
+document.getElementById("ris5").innerHTML=ris; //scrittura del risultato nella cella con id = ris4 dell'operazione AND bit a bit
+}
+</script>
+
+<table>
+<tr> <td> operando 1 : </td> <td> <input type="text" id="op1" size="10"> </td> </tr>
+<tr> <td> operando 2 :</td> <td> <input type="text" id="op2" size="10"> </td> </tr>
+<tr> <td> sequenza 1  :</td>  <td id="ris1">  </td> </tr>
+<tr> <td> sequenza 2  :</td>  <td id="ris2">  </td> </tr>
+<tr> <td> sequenza AND  :</td>  <td id="ris3">  </td> </tr>
+<tr> <td> sequenza OR  :</td>  <td id="ris4">  </td> </tr>
+<tr> <td> sequenza XOR  :</td>  <td id="ris5">  </td> </tr>
+</table>
+
+
+<p>  <input type="button" value="converti in binario" id="B1" onClick="Converti_in_binario ();">
+<p>  <input type="button" value="AND bit a bit" id="B2" onClick="AND ();">
+<p>  <input type="button" value="OR bit a bit" id="B3" onClick="OR ();">
+<p>  <input type="button" value="XOR bit a bit" id="B4" onClick="XOR ();">
+</body>
+</html>
